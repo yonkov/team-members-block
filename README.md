@@ -1,4 +1,4 @@
-This plugin is bootstrapped by running npx @wordpress/create-block inpsyde-challenge. It uses JSX, React and Typescript and requres a build step to run the code. If you want to make any changes, you need to clone or download this repository, then run:
+This plugin is bootstrapped by running `npx @wordpress/create-block` inpsyde-challenge. It uses JSX, React and Typescript and requres a build step to run the code. If you want to make any changes, you need to clone or download this repository, then run:
 
     npm i
     npm start
