@@ -1,10 +1,10 @@
-This plugin is bootstrapped by running `npx @wordpress/create-block` inpsyde-challenge. It uses JSX, React and Typescript and requres a build step to run the code. If you want to make any changes, you need to clone or download this repository, then run:
+This plugin is bootstrapped by running `npx @wordpress/create-block inpsyde-challenge`. It uses JSX, React and Typescript and requres a build step to run the code. If you want to make any changes, you need to clone or download this repository, install and activate this plugin, then run:
 
     npm i
     npm start
 
 ### Composer
-The plugin uses 2 composer dependencies:
+The plugin supports Composer and uses the following composer dependencies:
 1. [PHP Unit](https://phpunit.readthedocs.io/en/9.5/) to test the code
 2. [Inpsyde PHP Coding Standards](https://phpunit.readthedocs.io/en/9.5/) - PHP CodeSniffer to check for errors and beautify the code
 
