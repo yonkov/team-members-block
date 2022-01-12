@@ -1,3 +1,4 @@
+import * as React from 'react';
 /**
  * Retrieves the translation of text.
  *
@@ -11,7 +12,6 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import { useBlockProps } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,13 +29,17 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+
+ type EditProps = {
+	"className": string,
+};
+
+const Edit = ( { className }: EditProps ) => {
 	return (
-		<p {...useBlockProps()}>
-			{__(
-				'Inpsyde Challenge – hello from the editor!',
-				'inpsyde-challenge'
-			)}
+		<p className="wp-block-inpsyde-challenge ">
+			{ __( 'Hi from the editor!', 'tsblock' ) }
 		</p>
 	);
 }
+
+export default Edit

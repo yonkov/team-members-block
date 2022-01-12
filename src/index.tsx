@@ -17,22 +17,29 @@ import './style.scss';
 /**
  * Internal dependencies
  */
-import Edit from './edit';
+import edit from './edit';
 import save from './save';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Every block starts by registering a new block type definition.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-registerBlockType('create-block/inpsyde-challenge', {
-	/**
-	 * @see ./edit.js
-	 */
-	edit: Edit,
-
-	/**
-	 * @see ./save.js
-	 */
+ registerBlockType( 'create-block/inpsyde-challenge', {
+	apiVersion: 2,
+	title: __( 'Team Members', 'inpsyde-challenge' ),
+	description: __(
+		'An example typescript block.',
+		'inpsyde-challenge'
+	),
+	category: 'widgets',
+	icon: 'smiley',
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+	attributes: null,
+	edit,
 	save,
-});
+} );
