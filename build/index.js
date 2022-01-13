@@ -34,19 +34,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const React = __webpack_require__(/*! react */ "react");
+var React = __webpack_require__(/*! react */ "react");
+var components_1 = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /**
  * Retrieves the translation of text.
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
-const i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+var i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
+//import { useBlockProps } from '@wordpress/block-editor';
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -54,8 +56,14 @@ const i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
-const Edit = ({ className }) => {
-    return (React.createElement("p", { className: "wp-block-inpsyde-challenge " }, (0, i18n_1.__)('Hi from the editor!', 'tsblock')));
+var Edit = function (props) {
+    return (React.createElement(components_1.SelectControl, { label: (0, i18n_1.__)('Find a team member:'), value: props.attributes.content, options: [
+            { value: null, label: 'Select an Employee' },
+            { value: '1', label: 'John Doe' },
+            { value: '2', label: 'Penko Todorov' },
+            { value: '3', label: 'Vasko Ovcata' },
+            { value: '4', label: 'Pesho Peshev' },
+        ], onChange: function (value) { return props.setAttributes({ content: value }); } }));
 };
 exports["default"] = Edit;
 
@@ -75,7 +83,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-const blocks_1 = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+var blocks_1 = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * All files containing `style` keyword are bundled together. The code used
@@ -87,9 +95,9 @@ __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /**
  * Internal dependencies
  */
-const edit_1 = __webpack_require__(/*! ./edit */ "./src/edit.tsx");
-const save_1 = __webpack_require__(/*! ./save */ "./src/save.tsx");
-const i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+var edit_1 = __webpack_require__(/*! ./edit */ "./src/edit.tsx");
+var save_1 = __webpack_require__(/*! ./save */ "./src/save.tsx");
+var i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /**
  * Every block starts by registering a new block type definition.
  *
@@ -105,7 +113,12 @@ const i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
         // Removes support for an HTML mode.
         html: false,
     },
-    attributes: null,
+    attributes: {
+        content: {
+            type: 'string',
+            default: '1',
+        },
+    },
     edit: edit_1.default,
     save: save_1.default,
 });
@@ -121,20 +134,7 @@ const i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const React = __webpack_require__(/*! react */ "react");
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
- */
-const i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
- */
-// import { useBlockProps } from '@wordpress/block-editor';
+var React = __webpack_require__(/*! react */ "react");
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
@@ -144,8 +144,8 @@ const i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
  *
  * @return {WPElement} Element to render.
  */
-function save() {
-    return (React.createElement("p", { className: "wp-block-inpsyde-challenge" }, (0, i18n_1.__)('Inpsyde Challenge – hello from the saved content!', 'inpsyde-challenge')));
+function save(props) {
+    return (React.createElement("p", { className: "inpsyde-challenge", style: { color: 'blue' } }, props.attributes.content));
 }
 exports["default"] = save;
 
@@ -169,6 +169,16 @@ module.exports = window["React"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["components"];
 
 /***/ }),
 

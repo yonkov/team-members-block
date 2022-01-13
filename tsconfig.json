@@ -4,12 +4,12 @@
 		"target": "es5",
 		"jsx": "react",
 		"module": "commonjs",
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"allowJs": true,
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"strict": false
 	},
 	"include": [
-		"src",
-		"src/webpack.config.js"
+		"src"
 	]
 }

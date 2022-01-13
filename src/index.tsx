@@ -1,3 +1,4 @@
+import * as React from 'react';
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -20,7 +21,6 @@ import './style.scss';
 import edit from './edit';
 import save from './save';
 import { __ } from '@wordpress/i18n';
-
 /**
  * Every block starts by registering a new block type definition.
  *
@@ -39,7 +39,12 @@ import { __ } from '@wordpress/i18n';
 		// Removes support for an HTML mode.
 		html: false,
 	},
-	attributes: null,
-	edit,
-	save,
+	attributes: {
+		content: {
+			type: 'string',
+            default: '1',
+		},
+	},
+	edit: edit,
+	save: save,
 } );
