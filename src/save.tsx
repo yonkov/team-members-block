@@ -1,3 +1,4 @@
+import * as React from 'react';
 /**
  * Retrieves the translation of text.
  *
@@ -11,7 +12,10 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import { useBlockProps } from '@wordpress/block-editor';
+//import { useBlockProps } from '@wordpress/block-editor';
+
+// Import Interfaces
+import Options from './shared/interfaces/options'
 
 /**
  * The save function defines the way in which the different attributes should
@@ -22,13 +26,10 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save( props: Options) {
 	return (
-		<p {...useBlockProps.save()}>
-			{__(
-				'Inpsyde Challenge – hello from the saved content!',
-				'inpsyde-challenge'
-			)}
-		</p>
+		<p className="inpsyde-challenge" style={ { color: 'blue' } }>
+            { props.attributes.content }
+        </p>
 	);
 }

@@ -1,3 +1,6 @@
+import * as React from 'react';
+import { SelectControl } from '@wordpress/components';
+
 /**
  * Retrieves the translation of text.
  *
@@ -11,7 +14,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import { useBlockProps } from '@wordpress/block-editor';
+//import { useBlockProps } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,13 +32,24 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+// Import Interfaces
+import Options from './shared/interfaces/options'
+
+const Edit:any = ( props: Options) => {
 	return (
-		<p {...useBlockProps()}>
-			{__(
-				'Inpsyde Challenge – hello from the editor!',
-				'inpsyde-challenge'
-			)}
-		</p>
+		<SelectControl
+			label={ __( 'Find a team member:' ) }
+			value={ props.attributes.content }
+			options={ [
+				{ value: null, label: 'Select an Employee'},
+				{ value: '1', label: 'John Doe' },
+				{ value: '2', label: 'Penko Todorov' },
+				{ value: '3', label: 'Vasko Ovcata' },
+				{ value: '4', label: 'Pesho Peshev' },
+			] }
+			onChange={ (value:any) => props.setAttributes({ content: value }) }
+		/>
 	);
 }
+
+export default Edit
