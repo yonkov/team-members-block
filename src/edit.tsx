@@ -33,21 +33,41 @@ import './editor.scss';
  * @return {WPElement} Element to render.
  */
 // Import Interfaces
-import Options from './shared/interfaces/options'
+import BlockAttributes from './shared/interfaces/block-attributes'
+import TeamMember from './shared/interfaces/team-member'
 
-const Edit:any = ( props: Options) => {
+// data
+import { getPosts } from './data';
+
+function dropdownWithOptions(posts: Array<TeamMember>) {
+	const options = [
+		{
+			label: __('Select an Employee', 'custom-welcome-guide'),
+			value: ''
+		}
+	];
+	posts && posts.forEach(post => {
+		options.push({
+			label: post.title.rendered,
+			value: post.id
+		})
+	});
+
+	return options
+}
+
+const Edit: any = (props: BlockAttributes) => {
+
+	const teamMembers: Array<TeamMember> = getPosts();
+
 	return (
 		<SelectControl
-			label={ __( 'Find a team member:' ) }
-			value={ props.attributes.content }
-			options={ [
-				{ value: null, label: 'Select an Employee'},
-				{ value: '1', label: 'John Doe' },
-				{ value: '2', label: 'Penko Todorov' },
-				{ value: '3', label: 'Vasko Ovcata' },
-				{ value: '4', label: 'Pesho Peshev' },
-			] }
-			onChange={ (value:any) => props.setAttributes({ content: value }) }
+			label={__('Select a team member:')}
+			value={props.attributes.id}
+			options={
+				teamMembers.length && dropdownWithOptions(teamMembers) //dynamic select dropdown with labels and values
+			}
+			onChange={(value: string) => props.setAttributes({ id: value, teamMembers: teamMembers })}
 		/>
 	);
 }

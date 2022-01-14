@@ -26,6 +26,86 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/data.tsx":
+/*!**********************!*\
+  !*** ./src/data.tsx ***!
+  \**********************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getPosts = void 0;
+/**
+ * Get all the team members using the WordPress rest api
+ * @package Inpsyde Challenge
+ * @since 1.0.0
+ * @see https://developer.wordpress.org/rest-api/reference/
+ */
+var react_1 = __webpack_require__(/*! react */ "react");
+var restUrl = '';
+var getPosts = function () {
+    var _a = (0, react_1.useState)([]), data = _a[0], setData = _a[1];
+    (0, react_1.useEffect)(function () {
+        var getData = function () { return __awaiter(void 0, void 0, void 0, function () {
+            var response, json;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, fetch('http://localhost/wp-json/wp/v2/team-members?filter[orderby]=date&order=asc')];
+                    case 1:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json()];
+                    case 2:
+                        json = _a.sent();
+                        setData(json);
+                        return [2 /*return*/];
+                }
+            });
+        }); };
+        getData();
+    }, []);
+    return data;
+};
+exports.getPosts = getPosts;
+
+
+/***/ }),
+
 /***/ "./src/edit.tsx":
 /*!**********************!*\
   !*** ./src/edit.tsx ***!
@@ -56,14 +136,27 @@ var i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+// data
+var data_1 = __webpack_require__(/*! ./data */ "./src/data.tsx");
+function dropdownWithOptions(posts) {
+    var options = [
+        {
+            label: (0, i18n_1.__)('Select an Employee', 'custom-welcome-guide'),
+            value: ''
+        }
+    ];
+    posts && posts.forEach(function (post) {
+        options.push({
+            label: post.title.rendered,
+            value: post.id
+        });
+    });
+    return options;
+}
 var Edit = function (props) {
-    return (React.createElement(components_1.SelectControl, { label: (0, i18n_1.__)('Find a team member:'), value: props.attributes.content, options: [
-            { value: null, label: 'Select an Employee' },
-            { value: '1', label: 'John Doe' },
-            { value: '2', label: 'Penko Todorov' },
-            { value: '3', label: 'Vasko Ovcata' },
-            { value: '4', label: 'Pesho Peshev' },
-        ], onChange: function (value) { return props.setAttributes({ content: value }); } }));
+    var teamMembers = (0, data_1.getPosts)();
+    return (React.createElement(components_1.SelectControl, { label: (0, i18n_1.__)('Select a team member:'), value: props.attributes.id, options: teamMembers.length && dropdownWithOptions(teamMembers) //dynamic select dropdown with labels and values
+        , onChange: function (value) { return props.setAttributes({ id: value, teamMembers: teamMembers }); } }));
 };
 exports["default"] = Edit;
 
@@ -104,20 +197,22 @@ var i18n_1 = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 (0, blocks_1.registerBlockType)('create-block/inpsyde-challenge', {
-    apiVersion: 2,
     title: (0, i18n_1.__)('Team Members', 'inpsyde-challenge'),
     description: (0, i18n_1.__)('An example typescript block.', 'inpsyde-challenge'),
     category: 'widgets',
     icon: 'smiley',
     supports: {
-        // Removes support for an HTML mode.
-        html: false,
+        html: true,
     },
     attributes: {
-        content: {
+        id: {
             type: 'string',
-            default: '1',
+            default: '',
         },
+        teamMembers: {
+            type: 'array',
+            default: []
+        }
     },
     edit: edit_1.default,
     save: save_1.default,
@@ -145,7 +240,17 @@ var React = __webpack_require__(/*! react */ "react");
  * @return {WPElement} Element to render.
  */
 function save(props) {
-    return (React.createElement("p", { className: "inpsyde-challenge", style: { color: 'blue' } }, props.attributes.content));
+    var teamMembers = props.attributes.teamMembers;
+    console.log(teamMembers);
+    return (React.createElement("div", { className: "inpsyde-challenge" }, teamMembers.map(function (teamMember) {
+        return props.attributes.id == teamMember.id ? //print a teammember on the frontend in case he is selected from the block editor
+            React.createElement(React.Fragment, null,
+                teamMember.title.rendered,
+                teamMember.content.rendered,
+                React.createElement("img", { src: teamMember.featured_image }),
+                teamMember.ic_meta_position) : '';
+    } // description
+    )));
 }
 exports["default"] = save;
 
@@ -212,7 +317,7 @@ module.exports = window["wp"]["i18n"];
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
