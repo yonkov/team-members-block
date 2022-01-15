@@ -4,6 +4,16 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-inpsyde-challenge {
-	border: 1px dotted #f00;
+ .wp-block-inpsyde-challenge {
+	background-color: #21759b;
+	color: #fff;
+	label {
+		padding: .75rem !important;
+	}
+}
+
+@media(min-width: 20rem){
+	.wp-block-inpsyde-challenge {
+		width: 42.5% !important;
+	}
 }

@@ -18,21 +18,52 @@ import BlockAttributes from './shared/interfaces/block-attributes'
  * @return {WPElement} Element to render.
  */
 
-export default function save( props: BlockAttributes) {
+function save( props: BlockAttributes) {
+
 	const teamMembers = props.attributes.teamMembers;
-	console.log(teamMembers);
+
+	/**
+	 * Strip potentially dangerous html tags to secure post output
+	 * @param {string} content 
+	 * @returns escaped html
+	 */
+	function escapeHtml(content) {
+		let div = document.createElement('div');
+		div.innerHTML = content;
+	
+		let scripts = div.querySelectorAll('style, script');
+		let i = scripts.length;
+	
+		while (i--) {
+		  scripts[i].parentNode.removeChild(scripts[i]);
+		}
+	
+		return div.innerHTML;
+	  }
 	return (
 		<div className="inpsyde-challenge">
             {teamMembers.map( (teamMember) =>
 				props.attributes.id == teamMember.id ? //print a teammember on the frontend in case he is selected from the block editor
-				<>
-				{teamMember.title.rendered}
-				{teamMember.content.rendered}
-				{<img src={teamMember.featured_image} />}
-				{teamMember.ic_meta_position}
-				</>: '' // description
+				<div className="teamMember" key={props.attributes.id}>
+					{teamMember.featured_image ? <img src={teamMember.featured_image}/>: ''}
+					<h2>{teamMember.title.rendered}</h2>
+					<div className="description" 
+						dangerouslySetInnerHTML={{ __html: escapeHtml(teamMember.content.rendered) }}>
+					</div>
+					<div className="position">
+						{teamMember.ic_meta_position}
+					</div>
+					<div className="social-links">
+						{teamMember.ic_social_links.ic_fb_field}
+						{teamMember.ic_social_links.ic_linkedin_field}
+						{teamMember.ic_social_links.ic_xing_field}
+						{teamMember.ic_social_links.ic_github_field}
+					</div>
+				</div>: ''
 			)
 			}
         </div>
 	);
 }
+
+export default save

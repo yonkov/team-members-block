@@ -56,7 +56,17 @@ function inpsyde_challenge_block_init() {
 		if ( $typenow != 'page' ) {
 			return;
 		}
-		register_block_type( __DIR__ );
+		// register_block_type( __DIR__ );
+
+		$script_asset = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
+
+		wp_enqueue_script( 'inpsyde-challenge-plugin-script', plugins_url( 'build/index.js', __FILE__ ), $script_asset['dependencies'], $script_asset['version'], true );
+		$script_params = array(
+			'rest_url' => esc_url( get_rest_url() ),
+		);
+		wp_localize_script( 'inpsyde-challenge-plugin-script', 'inpsyde_challenge_script_params', $script_params );
+
+		wp_enqueue_style( 'inpsyde-challenge-plugin-style', plugins_url( 'build/main.css', __FILE__ ), array( 'wp-components' ), filemtime( plugin_dir_path( __FILE__ ) ) );
 	}
 }
 add_action( 'init', 'inpsyde_challenge_block_init' );
@@ -80,7 +90,7 @@ require_once plugin_dir_path( __FILE__ ) . '/classes/class-social-media.php';
 // Get image URL
 function inpsyde_challenge_get_thumbnail_url( $post ) {
 	if ( has_post_thumbnail( $post['id'] ) ) {
-		$imgArray = wp_get_attachment_image_src( get_post_thumbnail_id( $post['id'] ), 'medium_large' );
+		$imgArray = wp_get_attachment_image_src( get_post_thumbnail_id( $post['id'] ), 'medium' );
 		$imgURL   = $imgArray[0];
 		return esc_url( $imgURL );
 	} else {
@@ -102,13 +112,27 @@ function inpsyde_challenge_insert_thumbnail_url() {
 
 add_action( 'rest_api_init', 'inpsyde_challenge_insert_thumbnail_url' );
 
-/* Register Team Members meta data to WP Json */
+/**
+ *  Add Custom Post Meta to WP Json Response
+ */
+// Position
 register_rest_field(
 	'team-members',
 	'ic_meta_position',
 	array(
 		'get_callback' => function ( $data ) {
 			return get_post_meta( $data['id'], 'ic_position', true );
+		},
+	)
+);
+
+// Social Links
+register_rest_field(
+	'team-members',
+	'ic_social_links',
+	array(
+		'get_callback' => function ( $data ) {
+			return get_post_meta( $data['id'], 'ic_social_links', true );
 		},
 	)
 );

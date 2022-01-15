@@ -64,6 +64,7 @@ const Edit: any = (props: BlockAttributes) => {
 		<SelectControl
 			label={__('Select a team member:')}
 			value={props.attributes.id}
+			className="wp-block-inpsyde-challenge"
 			options={
 				teamMembers.length && dropdownWithOptions(teamMembers) //dynamic select dropdown with labels and values
 			}
