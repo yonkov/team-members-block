@@ -1,3 +1,12 @@
+## Inpsyde Challenge
+Inpsyde Challenge is a plugin that creates a custom block for the WordPress Block editor, called "Team Members". The plugin runs on post type page only and empowers the editorial team of the site to easily select team-members from an interactive and familiar admin interface, aka the Gutenberg editor. Once the team member is selected and the page is published, it appears on the site's frontend in the following format:
+1. Featured Image
+2. Name
+3. Description
+4. Position in the company
+5. Social links
+The team members are added on the site via post type Team Members. As per the challenge requirements, it does not have a single nor an archive page - the only way to display the team member is inside the page content.
+## Developer's Info
 This plugin is bootstrapped by running `npx @wordpress/create-block inpsyde-challenge`. It uses JSX, React and Typescript and requres a build step to run the code. If you want to make any changes, you need to clone or download this repository, install and activate this plugin, then run:
 
     npm i
@@ -5,7 +14,7 @@ This plugin is bootstrapped by running `npx @wordpress/create-block inpsyde-chal
 
 ### Composer
 The plugin supports Composer and uses the following composer dependencies:
-1. [PHP Unit](https://phpunit.readthedocs.io/en/9.5/) to test the code
+1. [PHP Unit](https://phpunit.readthedocs.io/en/9.5/) to test the php code
 2. [Inpsyde PHP Coding Standards](https://phpunit.readthedocs.io/en/9.5/) - PHP CodeSniffer to check for errors and beautify the code
 
 #### How to Check PHP FIles For Errors Using PHP CodeSniffer
@@ -17,3 +26,8 @@ You can check a file for php errors by running the following command in the root
 #### How to Fix the Errors Automatically Using PHP CBF
 If there are any errors, you can attempt to automatically fix them by running:
 `vendor\squizlabs\php_codesniffer\bin\phpcbf.bat --standard="Inpsyde" inpsyde-challenge.php`
+
+### Typescript
+This plugin uses typeScript with react.js to minimize potential errors and improve the project's predictability
+### PHP
+The plugin's data - team members get added in the database via custom post type "team members". Custom data, e.g. company position and social links are stored with custom meta boxes. No ACF or any other 3-rd party plugin or framework is used.

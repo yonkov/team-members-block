@@ -8,11 +8,11 @@ class Inpsyde_Challenge_Position_Metabox extends Inpsyde_Challenge_Metaboxes {
 		<div class="form-field">
 		<select name="ic_select_field" id="ic_select_field" class="postbox">
 			<option value=""><?php esc_html_e( 'Position', 'inpsyde-challenge' ); ?></option>
-			<option value="ceo" <?php selected( $value, 'ceo' ); ?>><?php esc_html_e( 'CEO', 'inpsyde-challenge' ); ?></option>
-			<option value="bsa" <?php selected( $value, 'bsa' ); ?>><?php esc_html_e( 'Business Solutions Architect', 'inpsyde-challenge' ); ?></option>
-			<option value="tech-lead" <?php selected( $value, 'tech-lead' ); ?>><?php esc_html_e( 'Tech Lead', 'inpsyde-challenge' ); ?></option>
-			<option value="pm" <?php selected( $value, 'pm' ); ?>><?php esc_html_e( 'Project Manager', 'inpsyde-challenge' ); ?></option>
-			<option value="dev" <?php selected( $value, 'dev' ); ?>><?php esc_html_e( 'Developer', 'inpsyde-challenge' ); ?></option>
+			<option value="1" <?php selected( $value, '1' ); ?>><?php esc_html_e( 'CEO', 'inpsyde-challenge' ); ?></option>
+			<option value="2" <?php selected( $value, '2' ); ?>><?php esc_html_e( 'Business Solutions Architect', 'inpsyde-challenge' ); ?></option>
+			<option value="3" <?php selected( $value, '3' ); ?>><?php esc_html_e( 'Tech Lead', 'inpsyde-challenge' ); ?></option>
+			<option value="4" <?php selected( $value, '4' ); ?>><?php esc_html_e( 'Project Manager', 'inpsyde-challenge' ); ?></option>
+			<option value="5" <?php selected( $value, '5' ); ?>><?php esc_html_e( 'Developer', 'inpsyde-challenge' ); ?></option>
 		</select>
 		</div>
 		<?php

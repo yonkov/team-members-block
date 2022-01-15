@@ -28,6 +28,6 @@ export default interface TeamMember {
     featured_media: number,
     template?: string,
     _links: Object,
-    ic_meta_position: string,
+    ic_position: string,
     ic_social_links: SocialLinks
 }

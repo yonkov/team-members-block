@@ -12,7 +12,6 @@ declare var inpsyde_challenge_script_params: {
 }
 const restUrl = inpsyde_challenge_script_params.rest_url;
 export const getPosts = () => {
-  console.log(inpsyde_challenge_script_params);
   const [data, setData] = useState<Array<TeamMember> | null>([]);
   useEffect(() => {
     const getData = async () => {
