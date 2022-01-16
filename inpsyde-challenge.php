@@ -93,7 +93,7 @@ class Inpsyde_Challenge {
 	 * @link: https://www.designbombs.com/registering-gutenberg-blocks-for-custom-post-type/
 	 */
 	public static function enqueue_scripts() {
-
+		// load scripts and styles for the block editor only
 		if ( is_admin() ) {
 
 			global $pagenow;
@@ -119,26 +119,29 @@ class Inpsyde_Challenge {
 			if ( $typenow != 'page' ) {
 				return;
 			}
+			$script_asset = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
+
+			wp_enqueue_script( 'inpsyde-challenge-plugin-script', plugins_url( 'build/index.js', __FILE__ ), $script_asset['dependencies'], $script_asset['version'], true );
+	
+			$script_params = array(
+				'rest_url' => esc_url( get_rest_url() ),
+			);
+			// let the frontend know the rest url to enable api calls
+			wp_localize_script( 'inpsyde-challenge-plugin-script', 'inpsyde_challenge_script_params', $script_params );
 		}
-
-		$script_asset = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
-
-		wp_enqueue_script( 'inpsyde-challenge-plugin-script', plugins_url( 'build/index.js', __FILE__ ), $script_asset['dependencies'], $script_asset['version'], true );
-
-		$script_params = array(
-			'rest_url' => esc_url( get_rest_url() ),
-		);
-		// let the frontend know the rest url to enable api calls
-		wp_localize_script( 'inpsyde-challenge-plugin-script', 'inpsyde_challenge_script_params', $script_params );
 	}
 
 	/**
 	 * Registers the plugin's styles.
 	 */
 	public static function enqueue_styles() {
-
-		wp_enqueue_style( 'inpsyde-challenge-plugin-style', plugins_url( 'build/main.css', __FILE__ ), array( 'wp-components' ), filemtime( plugin_dir_path( __FILE__ ) ) );
-
+		if(is_admin()) {
+			wp_enqueue_style( 'inpsyde-challenge-admin', plugins_url( 'build/main.css', __FILE__ ), array( 'wp-components' ), filemtime( plugin_dir_path( __FILE__ ) ) );
+		}
+		else { // load frontend scripts and styles
+			wp_enqueue_style( 'inpsyde-challenge', plugins_url( 'build/style-main.css', __FILE__ ), array(), filemtime( plugin_dir_path( __FILE__ ) ) );
+		}
+	
 	}
 
 	/**
