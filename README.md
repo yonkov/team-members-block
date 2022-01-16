@@ -1,14 +1,22 @@
 ## Inpsyde Challenge
-Inpsyde Challenge is a plugin that creates a custom block for the WordPress Block editor, called "Team Members". The plugin runs on post type page only and empowers the editorial team of the site to easily select team-members via custom Gutenberg Block: [Image One: Custom Gutenberg Block](https://i.imgur.com/aDgkrdZ.png) Once the team member is selected and the page is published, it appears on the site's frontend in the following format:
+Inpsyde Challenge is a plugin that creates a custom block for the WordPress Block editor, called "Team Members". The plugin runs on post type page only and empowers the editorial team of the site to easily select team-members via custom Gutenberg Block: 
+
+![Image One: Custom Gutenberg Block](https://i.imgur.com/aDgkrdZ.png) 
+
+Once the team member is selected and the page is published, it appears on the site's frontend in the following format:
 1. Featured Image
 2. Name
 3. Position in the company
+
 ![Image Two: Plugin Frontend](https://i.imgur.com/3bu91V9.png)
+
 Once it is clicked, a modal overlay pops up with additional info about the team member.
 1. Name
 3. Description
 5. Social links
+
 ![Image Three: Plugin Frontend](https://i.imgur.com/Xt1HuSs.png)
+
 The team members are added on the site via post type Team Members. As per the challenge requirements, the custom post type does not have a single nor an archive page - the only way to display the team member is inside the page content.Some of the data, e.g. position and social links are added via custom meta boxes:
 ![Image Four: Social Links on Plugin Backend](https://i.imgur.com/1lvebct.png)
 
