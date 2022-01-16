@@ -8,6 +8,10 @@ import { __ } from '@wordpress/i18n';
 
 // Import Interfaces
 import BlockAttributes from './shared/interfaces/block-attributes'
+
+//helpers
+import { companyPosition } from './shared/helpers/functions';
+
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
@@ -39,29 +43,6 @@ function save(props: BlockAttributes) {
 		}
 
 		return div.innerHTML;
-	}
-	/* Decode company positions */
-	function companyPosition(roleId) {
-		let position = '';
-		switch (roleId) {
-			case '1':
-				position = __("CEO", 'inpsyde-challenge');
-				break;
-			case '2':
-				position = __("Business Solutions Architect", 'inpsyde-challenge');
-				break;
-			case '3':
-				position = __("Tech Lead", 'inpsyde-challenge');
-				break;
-			case '4':
-				position = __("Project Manager", 'inpsyde-challenge');
-				break;
-			case '5':
-				position = __("Developer", 'inpsyde-challenge');
-				break;
-		}
-		return position;
-
 	}
 
 	return (

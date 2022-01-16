@@ -38,6 +38,8 @@ import TeamMember from './shared/interfaces/team-member'
 
 // data
 import { getPosts } from './data';
+//helpers
+import { companyPosition } from './shared/helpers/functions';
 
 function dropdownWithOptions(posts: Array<TeamMember>) {
 	const options = [
@@ -61,6 +63,7 @@ const Edit: any = (props: BlockAttributes) => {
 	const teamMembers: Array<TeamMember> = getPosts();
 
 	return (
+		<>
 		<SelectControl
 			label={__('Select a team member:')}
 			value={props.attributes.id}
@@ -70,6 +73,18 @@ const Edit: any = (props: BlockAttributes) => {
 			}
 			onChange={(value: string) => props.setAttributes({ id: value, teamMembers: teamMembers })}
 		/>
+		<div>{teamMembers.map((teamMember) =>
+			props.attributes.id == teamMember.id ?
+			<div className="teamMember" key={props.attributes.id}>
+			{teamMember.featured_image ? <img src={teamMember.featured_image} /> : ''}
+			<h2>{teamMember.title.rendered}</h2>
+				<div className="position">
+					{companyPosition(teamMember.ic_position)}
+				</div>
+			</div> : ''
+		)}
+		</div>
+		</>
 	);
 }
 
