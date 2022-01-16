@@ -31,3 +31,5 @@ If there are any errors, you can attempt to automatically fix them by running:
 This plugin uses typeScript with react.js to minimize potential errors and improve the project's predictability
 ### PHP
 The plugin's data - team members get added in the database via custom post type "team members". Custom data, e.g. company position and social links are stored with custom meta boxes. No ACF or any other 3-rd party plugin or framework is used.
+### Tests
+You can execute a test by running `vendor\bin\phpunit` in the command line.

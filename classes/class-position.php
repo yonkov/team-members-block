@@ -2,7 +2,7 @@
 /* Company Position */
 class Inpsyde_Challenge_Position_Metabox extends Inpsyde_Challenge_Metaboxes {
 
-	function output_meta_box( $post ) {
+	public function output_meta_box( $post ) {
 		$value = get_post_meta( $post->ID, 'ic_position', true );
 		?>
 		<div class="form-field">
@@ -20,7 +20,7 @@ class Inpsyde_Challenge_Position_Metabox extends Inpsyde_Challenge_Metaboxes {
 	/**
 	 * @param int $postid  The post ID.
 	 */
-	function save_meta_box( int $postid ) {
+	public function save_meta_box( int $postid ) {
 		if ( array_key_exists( 'ic_select_field', $_POST ) ) {
 			update_post_meta(
 				$postid,

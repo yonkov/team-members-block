@@ -2,7 +2,7 @@
 /* Social Media Links */
 class Inpsyde_Challenge_Social_Media_Metabox extends Inpsyde_Challenge_Metaboxes {
 
-	function output_meta_box( $post ) {
+	public function output_meta_box( $post ) {
 		$social_links = get_post_meta( $post->ID, 'ic_social_links', true );
 		?>
 		<div class="form-field">
@@ -26,7 +26,7 @@ class Inpsyde_Challenge_Social_Media_Metabox extends Inpsyde_Challenge_Metaboxes
 	/**
 	 * @param int $postid  The post ID.
 	 */
-	function save_meta_box( int $postid ) {
+	public function save_meta_box( int $postid ) {
 		if ( array_key_exists( 'ic_fb_field', $_POST ) || array_key_exists( 'ic_linkedin_field', $_POST )
 		|| array_key_exists( 'ic_xing_field', $_POST ) || array_key_exists( 'ic_github_field', $_POST ) ) {
 			$social_links_values = array(
