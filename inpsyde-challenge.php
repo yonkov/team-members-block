@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Inpsyde_Challenge {
 
+
 	/**
 	 * Initializes the plugin base functions.
 	 *
@@ -45,7 +46,6 @@ class Inpsyde_Challenge {
 	 * team-members are registered by this function.
 	 */
 	public static function register_post_types() {
-
 		$labels = array(
 			'name'               => __( 'Team Members' ),
 			'singular_name'      => __( 'Team Member' ),
@@ -83,7 +83,6 @@ class Inpsyde_Challenge {
 			'rest_base'           => 'team-members',
 		);
 		register_post_type( 'Team-Members', $args );
-
 	}
 
 	/**
@@ -95,7 +94,6 @@ class Inpsyde_Challenge {
 	public static function enqueue_scripts() {
 		// load scripts and styles for the block editor only
 		if ( is_admin() ) {
-
 			global $pagenow;
 			$typenow = '';
 
@@ -122,7 +120,7 @@ class Inpsyde_Challenge {
 			$script_asset = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 
 			wp_enqueue_script( 'inpsyde-challenge-plugin-script', plugins_url( 'build/index.js', __FILE__ ), $script_asset['dependencies'], $script_asset['version'], true );
-	
+
 			$script_params = array(
 				'rest_url' => esc_url( get_rest_url() ),
 			);
@@ -135,20 +133,17 @@ class Inpsyde_Challenge {
 	 * Registers the plugin's styles.
 	 */
 	public static function enqueue_styles() {
-		if(is_admin()) {
+		if ( is_admin() ) {
 			wp_enqueue_style( 'inpsyde-challenge-admin', plugins_url( 'build/main.css', __FILE__ ), array( 'wp-components' ), filemtime( plugin_dir_path( __FILE__ ) ) );
-		}
-		else { // load frontend scripts and styles
+		} else { // load frontend scripts and styles
 			wp_enqueue_style( 'inpsyde-challenge', plugins_url( 'build/style-main.css', __FILE__ ), array(), filemtime( plugin_dir_path( __FILE__ ) ) );
 		}
-	
 	}
 
 	/**
 	 *  Add Custom Post Meta to WP Json Response
 	 */
 	public static function register_rest_data() {
-
 		register_rest_field(
 			'team-members',
 			'featured_image',  // key-name in json response
@@ -178,8 +173,8 @@ class Inpsyde_Challenge {
 				'schema'          => null,
 			)
 		);
-
 	}
+
 	/* helpers */
 	public static function get_ic_post_meta( $object, $field_name, $request ) {
 		return get_post_meta( $object['id'], $field_name, true );
@@ -194,7 +189,6 @@ class Inpsyde_Challenge {
 			return false;
 		}
 	}
-
 }
 
 add_action( 'init', array( 'Inpsyde_Challenge', 'init' ) );
