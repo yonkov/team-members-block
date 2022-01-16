@@ -18,6 +18,7 @@ Once it is clicked, a modal overlay pops up with additional info about the team 
 ![Image Three: Plugin Frontend](https://i.imgur.com/Xt1HuSs.png)
 
 The team members are added on the site via post type Team Members. As per the challenge requirements, the custom post type does not have a single nor an archive page - the only way to display the team member is inside the page content.Some of the data, e.g. position and social links are added via custom meta boxes:
+
 ![Image Four: Social Links on Plugin Backend](https://i.imgur.com/1lvebct.png)
 
 ## Developer's Info
@@ -26,10 +27,9 @@ This plugin is bootstrapped by running `npx @wordpress/create-block inpsyde-chal
     npm i
     npm start
 
-### Frontend
-No 3-rd party libraries are used for the output of the custom block. The overlay modal is a css-only solution - no js is used.
+
 ### React / Typescript
-This plugin uses typeScript with react.js to create a custom Gutenberg block. This is done to minimize potential errors and improve the project's predictability
+This plugin uses typeScript with react.js to create a custom Gutenberg block. This is done to minimize potential errors and improve the project's predictability. No 3-rd party libraries are used for the output of the custom block. The overlay modal is a css-only solution - no js is used.
 
 ### Composer
 The plugin supports Composer and uses the following composer dependencies:
