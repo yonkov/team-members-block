@@ -9,14 +9,6 @@ import { SelectControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
- */
-//import { useBlockProps } from '@wordpress/block-editor';
-
-/**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
  *
@@ -24,31 +16,59 @@ import { __ } from '@wordpress/i18n';
  */
 import './editor.scss';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
- *
- * @return {WPElement} Element to render.
- */
 // Import Interfaces
-import Options from './shared/interfaces/options'
+import BlockAttributes from './shared/interfaces/block-attributes'
+import TeamMember from './shared/interfaces/team-member'
 
-const Edit:any = ( props: Options) => {
+// data
+import { getPosts } from './data';
+//helpers
+import { companyPosition } from './shared/helpers/functions';
+
+function dropdownWithOptions(posts: TeamMember[]) {
+	const options = [
+		{
+			label: __('Select an Employee', 'custom-welcome-guide'),
+			value: ''
+		}
+	];
+	posts && posts.forEach(post => {
+		options.push({
+			label: post.title.rendered,
+			value: post.id
+		})
+	});
+
+	return options
+}
+
+const Edit: any = (props: BlockAttributes) => {
+
+	const teamMembers: Array<TeamMember> = getPosts();
+
 	return (
+		<>
 		<SelectControl
-			label={ __( 'Find a team member:' ) }
-			value={ props.attributes.content }
-			options={ [
-				{ value: null, label: 'Select an Employee'},
-				{ value: '1', label: 'John Doe' },
-				{ value: '2', label: 'Penko Todorov' },
-				{ value: '3', label: 'Vasko Ovcata' },
-				{ value: '4', label: 'Pesho Peshev' },
-			] }
-			onChange={ (value:any) => props.setAttributes({ content: value }) }
+			label={__('Select a team member:')}
+			value={props.attributes.id}
+			className="wp-block-inpsyde-challenge"
+			options={
+				teamMembers.length && dropdownWithOptions(teamMembers) //dynamic select dropdown with labels and values
+			}
+			onChange={(value: string) => props.setAttributes({ id: value, teamMembers: teamMembers })}
 		/>
+		<div>{teamMembers.map((teamMember) =>
+			props.attributes.id == teamMember.id ?
+			<div className="teamMember" key={props.attributes.id}>
+			{teamMember.featured_image ? <img src={teamMember.featured_image} /> : ''}
+			<h2>{teamMember.title.rendered}</h2>
+				<div className="position">
+					{companyPosition(teamMember.ic_position)}
+				</div>
+			</div> : ''
+		)}
+		</div>
+		</>
 	);
 }
 

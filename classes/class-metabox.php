@@ -3,7 +3,7 @@
  * Metabox abstract class for easier metabox creation
  *
  * @link: http://www.wpcraftsman.com/blurbette-plugin-metabox-abstract/
- * 
+ *
  * @package Inpsyde Challenge
  * @since 1.0.0
  */
@@ -15,7 +15,8 @@ abstract class Inpsyde_Challenge_Metaboxes {
 	protected $capability;
 	protected $post_types;
 	protected $priority;
-	protected $title;
+	public $title;
+	public $context;
 	protected $domid;
 
 	function __construct( array $opts ) {
@@ -84,7 +85,7 @@ abstract class Inpsyde_Challenge_Metaboxes {
 		wp_nonce_field( $this->nonceval, $this->noncename );
 	}
 
-	public function save_meta_box( int $postid ) {}
+	abstract public function save_meta_box( int $postid );
 
 	abstract public function output_meta_box( $post );
 
