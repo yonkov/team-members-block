@@ -29,7 +29,9 @@ This plugin is bootstrapped by running `npx @wordpress/create-block inpsyde-chal
 
 
 ### React / Typescript
-This plugin uses typeScript with react.js to create a custom Gutenberg block. This is done to minimize potential errors and improve the project's predictability. No 3-rd party libraries are used for the output of the custom block. The overlay modal is a css-only solution - no js is used.
+This plugin uses typeScript with react.js to create a custom Gutenberg block. This is done to minimize potential errors and improve the project's predictability. No 3-rd party libraries are used for the output of the custom block. The overlay modal is a css-only solution - no js is used. 
+### Tests
+Frontend Tests using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ### Composer
 The plugin supports Composer and uses the following composer dependencies:
@@ -48,5 +50,5 @@ If there are any errors, you can attempt to automatically fix them by running:
 
 ### PHP
 The plugin's data - team members get added in the database via custom post type "team members". Custom data, e.g. company position and social links are stored with custom meta boxes. No ACF or any other 3-rd party plugin or framework is used.
-### Tests
+### PHP Unit Tests
 You can execute a test by running `vendor\bin\phpunit` in the command line. 

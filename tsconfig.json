@@ -8,6 +8,7 @@
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"strict": false,
+		"esModuleInterop": true
 	},
 	"include": [
 		"src"

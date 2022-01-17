@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Inpsyde Challenge
  * Description:       Example block written with ESNext standard and JSX support – build step required.
- * Requires at least: 5.8
+ * Requires at least: 5.5
  * Requires PHP:      7.0
  * Version:           1.0.0
  * Author:            The WordPress Contributors
@@ -27,7 +27,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * It extends the wp rest api by adding rest fields with custom meta data.
  */
 class Inpsyde_Challenge {
-
 
 	/**
 	 * Initializes the plugin base functions.
