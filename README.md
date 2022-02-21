@@ -1,5 +1,5 @@
-## Team Members Gutenberg Block
-Team Members Block is a plugin that creates a custom block for the WordPress Block editor, called "Team Members". The plugin runs on post type page only and empowers the editorial team of the site to easily select a team member via the custom Gutenberg Block: 
+## Team Members
+Team Members is a plugin that creates a custom block for the WordPress Block editor, called "Team Members". The plugin runs on post type page only and empowers the editorial team of the site to easily select a team member via the custom Gutenberg Block: 
 
 ![Image One: Custom Gutenberg Block](https://i.imgur.com/aDgkrdZ.png) 
 
