@@ -4,11 +4,11 @@
  *
  * @link: http://www.wpcraftsman.com/blurbette-plugin-metabox-abstract/
  *
- * @package Inpsyde Challenge
+ * @package Team Members Block
  * @since 1.0.0
  */
 
-abstract class Inpsyde_Challenge_Metaboxes {
+abstract class Team_Members_Block_Metaboxes {
 
 	protected $noncename = 'ic_nonce';
 	protected $nonceval;

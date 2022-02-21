@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:       Inpsyde Challenge
- * Description:       Team Members custom gutenberg block written with ESNext standard and JSX support – build step required.
+ * Plugin Name:       Team Members
+ * Description:       Team Members is a custom Gutenberg Block written with ESNext standard and JSX support – build step required.
  * Requires at least: 5.5
  * Requires PHP:      7.0
  * Version:           1.0.0
  * Author:            Atanas Yonkov
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       inpsyde-challenge
+ * Text Domain:       team-members-block
  *
- * @package           inpsyde-challenge
+ * @package           team-members-block
  */
 
 /**
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class registers the post types, scripts and styles that are necessary for the plugin to work.
  * It extends the wp rest api by adding rest fields with custom meta data.
  */
-class Inpsyde_Challenge {
+class Team_Members_Block {
 
 	/**
 	 * Initializes the plugin base functions.
@@ -118,13 +118,13 @@ class Inpsyde_Challenge {
 			}
 			$script_asset = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 
-			wp_enqueue_script( 'inpsyde-challenge-plugin-script', plugins_url( 'build/index.js', __FILE__ ), $script_asset['dependencies'], $script_asset['version'], true );
+			wp_enqueue_script( 'team-members-block-plugin-script', plugins_url( 'build/index.js', __FILE__ ), $script_asset['dependencies'], $script_asset['version'], true );
 
 			$script_params = array(
 				'rest_url' => esc_url( get_rest_url() ),
 			);
 			// let the frontend know the rest url to enable api calls
-			wp_localize_script( 'inpsyde-challenge-plugin-script', 'inpsyde_challenge_script_params', $script_params );
+			wp_localize_script( 'team-members-block-plugin-script', 'Team_Members_Block_script_params', $script_params );
 		}
 	}
 
@@ -133,9 +133,9 @@ class Inpsyde_Challenge {
 	 */
 	public static function enqueue_styles() {
 		if ( is_admin() ) {
-			wp_enqueue_style( 'inpsyde-challenge-admin', plugins_url( 'build/main.css', __FILE__ ), array( 'wp-components' ), filemtime( plugin_dir_path( __FILE__ ) ) );
+			wp_enqueue_style( 'team-members-block-admin', plugins_url( 'build/main.css', __FILE__ ), array( 'wp-components' ), filemtime( plugin_dir_path( __FILE__ ) ) );
 		} else { // load frontend scripts and styles
-			wp_enqueue_style( 'inpsyde-challenge', plugins_url( 'build/style-main.css', __FILE__ ), array(), filemtime( plugin_dir_path( __FILE__ ) ) );
+			wp_enqueue_style( 'team-members-block', plugins_url( 'build/style-main.css', __FILE__ ), array(), filemtime( plugin_dir_path( __FILE__ ) ) );
 		}
 	}
 
@@ -147,7 +147,7 @@ class Inpsyde_Challenge {
 			'team-members',
 			'featured_image',  // key-name in json response
 			array(
-				'get_callback'    => array( 'Inpsyde_Challenge', 'get_ic_featured_image' ),
+				'get_callback'    => array( 'Team_Members_Block', 'get_ic_featured_image' ),
 				'update_callback' => null,
 				'schema'          => null,
 			)
@@ -157,7 +157,7 @@ class Inpsyde_Challenge {
 			'team-members',
 			'ic_position',
 			array(
-				'get_callback'    => array( 'Inpsyde_Challenge', 'get_ic_post_meta' ),
+				'get_callback'    => array( 'Team_Members_Block', 'get_ic_post_meta' ),
 				'update_callback' => null,
 				'schema'          => null,
 			)
@@ -167,7 +167,7 @@ class Inpsyde_Challenge {
 			'team-members',
 			'ic_social_links',
 			array(
-				'get_callback'    => array( 'Inpsyde_Challenge', 'get_ic_post_meta' ),
+				'get_callback'    => array( 'Team_Members_Block', 'get_ic_post_meta' ),
 				'update_callback' => null,
 				'schema'          => null,
 			)
@@ -190,9 +190,9 @@ class Inpsyde_Challenge {
 	}
 }
 
-add_action( 'init', array( 'Inpsyde_Challenge', 'init' ) );
+add_action( 'init', array( 'Team_Members_Block', 'init' ) );
 
-add_action( 'rest_api_init', array( 'Inpsyde_Challenge', 'register_rest_data' ) );
+add_action( 'rest_api_init', array( 'Team_Members_Block', 'register_rest_data' ) );
 
 /* Abstract class for metaboxes */
 require_once plugin_dir_path( __FILE__ ) . '/classes/class-metabox.php';

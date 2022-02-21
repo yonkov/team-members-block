@@ -21,7 +21,7 @@ describe("<Edit />", () => {
 
 describe("Block", () => {
   //file path for plugin
-  const plugin = "inpsyde-challenge/inpsyde-challenge.php";
+  const plugin = "team-members-block/team-members-block.php";
   beforeEach(async () => {
     await activatePlugin(plugin);
   });

@@ -1,5 +1,5 @@
-## Inpsyde Challenge
-Inpsyde Challenge is a plugin that creates a custom block for the WordPress Block editor, called "Team Members". The plugin runs on post type page only and empowers the editorial team of the site to easily select a team member via the custom Gutenberg Block: 
+## Team Members Gutenberg Block
+Team Members Block is a plugin that creates a custom block for the WordPress Block editor, called "Team Members". The plugin runs on post type page only and empowers the editorial team of the site to easily select a team member via the custom Gutenberg Block: 
 
 ![Image One: Custom Gutenberg Block](https://i.imgur.com/aDgkrdZ.png) 
 
@@ -22,7 +22,7 @@ The team members are added on the site via the custom post type "Team Members". 
 ![Image Four: Social Links on Plugin Backend](https://i.imgur.com/1lvebct.png)
 
 ## Developer's Info
-This plugin is bootstrapped by running `npx @wordpress/create-block inpsyde-challenge`. It uses JSX, React and Typescript and requres a build step to run the code. If you want to make any changes, you need to clone or download this repository, install and activate this plugin, then run:
+This plugin is bootstrapped by running `npx @wordpress/create-block team-members-block`. It uses JSX, React and Typescript and requres a build step to run the code. If you want to make any changes, you need to clone or download this repository, install and activate this plugin, then run:
 
     npm i
     npm start
@@ -40,11 +40,11 @@ The plugin supports Composer and uses the following composer dependencies:
 The plugin uses [Inpsyde PHP Coding Standards](https://github.com/inpsyde/php-coding-standards). It is based on the WordPress coding standards and uses the famous [php_codesniffer](https://packagist.org/packages/squizlabs/php_codesniffer)
 
 You can check a file for php errors by running the following command in the root directory:
-`vendor\bin\phpcs.bat --standard="Inpsyde" ./inpsyde-challenge.php`
+`vendor\bin\phpcs.bat --standard="Inpsyde" ./team-members-block.php`
 
 #### How to Fix the Errors Automatically Using PHP CBF
 If there are any errors, you can attempt to automatically fix them by running:
-`vendor\squizlabs\php_codesniffer\bin\phpcbf.bat --standard="Inpsyde" inpsyde-challenge.php`
+`vendor\squizlabs\php_codesniffer\bin\phpcbf.bat --standard="Inpsyde" team-members-block.php`
 
 ### PHP
 The plugin's data - team members get added in the database via custom post type "team members". Custom data, e.g. company position and social links are stored with custom meta boxes. No ACF or any other 3-rd party plugin or framework is used.

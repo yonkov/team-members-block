@@ -1,16 +1,16 @@
 /**
  * Get all the team members using the WordPress rest api
- * @package Inpsyde Challenge
+ * @package Team Members Block
  * @since 1.0.0
  * @see https://developer.wordpress.org/rest-api/reference/
  */
 import { useEffect, useState } from 'react';
 import TeamMember from './shared/interfaces/team-member'
 
-declare var inpsyde_challenge_script_params: {
+declare var Team_Members_Block_script_params: {
   rest_url: string;
 }
-const restUrl = inpsyde_challenge_script_params.rest_url;
+const restUrl = Team_Members_Block_script_params.rest_url;
 export const getPosts = () => {
   const [data, setData] = useState<Array<TeamMember> | null>([]);
   useEffect(() => {

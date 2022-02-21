@@ -1,25 +1,25 @@
 <?php
 /* Social Media Links */
-class Inpsyde_Challenge_Social_Media_Metabox extends Inpsyde_Challenge_Metaboxes {
+class Team_Members_Block_Social_Media_Metabox extends Team_Members_Block_Metaboxes {
 
 	public function output_meta_box( $post ) {
 		$social_links = get_post_meta( $post->ID, 'ic_social_links', true );
 		?>
 		<div class="form-field">
-			<label for="ic_fb_field"><?php esc_html_e( 'Facebook', 'inpsyde-challenge' ); ?></label>
-			<input name="ic_fb_field" type="text" placeholder="<?php esc_html_e( 'Add facebook profile url here', 'inpsyde-challenge' ); ?>" value="<?php echo esc_html( isset( $social_links['ic_fb_field'] ) ? $social_links['ic_fb_field'] : '' ); ?>" />
+			<label for="ic_fb_field"><?php esc_html_e( 'Facebook', 'team-members-block' ); ?></label>
+			<input name="ic_fb_field" type="text" placeholder="<?php esc_html_e( 'Add facebook profile url here', 'team-members-block' ); ?>" value="<?php echo esc_html( isset( $social_links['ic_fb_field'] ) ? $social_links['ic_fb_field'] : '' ); ?>" />
 		</div>
 		<div class="form-field">
-			<label for="ic_linkedin_field"><?php esc_html_e( 'Linkedin', 'inpsyde-challenge' ); ?></label>
-			<input name="ic_linkedin_field" type="text" placeholder="<?php esc_html_e( 'Add linkedin profile url here', 'inpsyde-challenge' ); ?>" value="<?php echo esc_html( isset( $social_links['ic_linkedin_field'] ) ? $social_links['ic_linkedin_field'] : '' ); ?>" />
+			<label for="ic_linkedin_field"><?php esc_html_e( 'Linkedin', 'team-members-block' ); ?></label>
+			<input name="ic_linkedin_field" type="text" placeholder="<?php esc_html_e( 'Add linkedin profile url here', 'team-members-block' ); ?>" value="<?php echo esc_html( isset( $social_links['ic_linkedin_field'] ) ? $social_links['ic_linkedin_field'] : '' ); ?>" />
 		</div>
 		<div class="form-field">
-			<label for="ic_xing_field"><?php esc_html_e( 'Xing', 'inpsyde-challenge' ); ?></label>
-			<input name="ic_xing_field" type="text" placeholder="<?php esc_html_e( 'Add xyng profile url here', 'inpsyde-challenge' ); ?>" value="<?php echo esc_html( isset( $social_links['ic_xing_field'] ) ? $social_links['ic_xing_field'] : '' ); ?>" />
+			<label for="ic_xing_field"><?php esc_html_e( 'Xing', 'team-members-block' ); ?></label>
+			<input name="ic_xing_field" type="text" placeholder="<?php esc_html_e( 'Add xyng profile url here', 'team-members-block' ); ?>" value="<?php echo esc_html( isset( $social_links['ic_xing_field'] ) ? $social_links['ic_xing_field'] : '' ); ?>" />
 		</div>
 		<div class="form-field">
-			<label for="ic_github_field"><?php esc_html_e( 'Github', 'inpsyde-challenge' ); ?></label>
-			<input name="ic_github_field" type="text" placeholder="<?php esc_html_e( 'Add github profile url here', 'inpsyde-challenge' ); ?>" value="<?php echo esc_html( isset( $social_links['ic_github_field'] ) ? $social_links['ic_github_field'] : '' ); ?>" />
+			<label for="ic_github_field"><?php esc_html_e( 'Github', 'team-members-block' ); ?></label>
+			<input name="ic_github_field" type="text" placeholder="<?php esc_html_e( 'Add github profile url here', 'team-members-block' ); ?>" value="<?php echo esc_html( isset( $social_links['ic_github_field'] ) ? $social_links['ic_github_field'] : '' ); ?>" />
 		</div>
 		<?php
 	}
@@ -44,7 +44,7 @@ class Inpsyde_Challenge_Social_Media_Metabox extends Inpsyde_Challenge_Metaboxes
 	}
 }
 
-new Inpsyde_Challenge_Social_Media_Metabox(
+new Team_Members_Block_Social_Media_Metabox(
 	array(
 		'title'   => 'Social Media links',
 		'context' => 'side',

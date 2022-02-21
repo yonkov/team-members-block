@@ -5,19 +5,19 @@ export function companyPosition(roleId) {
 		let position = '';
 		switch (roleId) {
 			case '1':
-				position = __("CEO", 'inpsyde-challenge');
+				position = __("CEO", 'team-members-block');
 				break;
 			case '2':
-				position = __("Business Solutions Architect", 'inpsyde-challenge');
+				position = __("Business Solutions Architect", 'team-members-block');
 				break;
 			case '3':
-				position = __("Tech Lead", 'inpsyde-challenge');
+				position = __("Tech Lead", 'team-members-block');
 				break;
 			case '4':
-				position = __("Project Manager", 'inpsyde-challenge');
+				position = __("Project Manager", 'team-members-block');
 				break;
 			case '5':
-				position = __("Developer", 'inpsyde-challenge');
+				position = __("Developer", 'team-members-block');
 				break;
 		}
 		return position;

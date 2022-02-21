@@ -26,11 +26,11 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
- registerBlockType( 'create-block/inpsyde-challenge', {
-	title: __( 'Team Members', 'inpsyde-challenge' ),
+ registerBlockType( 'create-block/team-members-block', {
+	title: __( 'Team Members', 'team-members-block' ),
 	description: __(
 		'An example typescript block.',
-		'inpsyde-challenge'
+		'team-members-block'
 	),
 	category: 'widgets',
 	icon: 'smiley',

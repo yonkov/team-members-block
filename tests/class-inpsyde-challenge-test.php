@@ -1,13 +1,13 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class Inpsyde_Challenge_Test extends TestCase {
+class Team_Members_Block_Test extends TestCase {
 
 	// test post meta
 	public function testMetaBoxCLass() {
 
 		// Post meta title should equal the assigned title
-		$testClass = new Inpsyde_Challenge_Position_Metabox(
+		$testClass = new Team_Members_Block_Position_Metabox(
 			array(
 				'title'   => 'Business Analyst',
 				'context' => 'side',
@@ -23,7 +23,7 @@ class Inpsyde_Challenge_Test extends TestCase {
 	// Post meta title should not be empty
 	public function testException() {
 		try {
-			$testClass = new Inpsyde_Challenge_Position_Metabox( array() );
+			$testClass = new Team_Members_Block_Position_Metabox( array() );
 			$this->$testClass;
 			$this->fail( 'Expected Exception has not been raised.' );
 		} catch ( Exception $ex ) {

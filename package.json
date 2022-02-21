@@ -1,5 +1,5 @@
 {
-	"name": "inpsyde-challenge",
+	"name": "team-members-block",
 	"version": "0.1.0",
 	"description": "Example block written with ESNext standard and JSX support – build step required.",
 	"author": "The WordPress Contributors",
@@ -24,7 +24,7 @@
 		],
 		"testEnvironment": "jsdom",
 		"globals": {
-			"inpsyde_challenge_script_params": {
+			"Team_Members_Block_script_params": {
 				"rest_url": "/wp_json"
 			}
 		}

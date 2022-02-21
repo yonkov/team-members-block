@@ -46,7 +46,7 @@ function save(props: BlockAttributes) {
 	}
 
 	return (
-		<div className="inpsyde-challenge">
+		<div className="team-members-block">
 			{teamMembers.map((teamMember) =>
 				props.attributes.id == teamMember.id ? //print a teammember on the frontend in case he is selected from the block editor
 					<>
